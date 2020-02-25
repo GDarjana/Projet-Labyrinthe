@@ -10,6 +10,7 @@
 """
 
 def Joueur(nom):
+  return (nom, [])
     """
     creer un nouveau joueur portant le nom passé en paramètre. Ce joueur possède une liste de trésors à trouver vide
     paramètre: nom une chaine de caractères
@@ -17,6 +18,11 @@ def Joueur(nom):
     """
     pass
 def ajouterTresor(joueur,tresor):
+  if tresor in joueur[1]:
+    pass
+  else:
+    if tresor > 0:
+      joueur[1].append(tresor)  
     """
     ajoute un trésor à trouver à un joueur (ce trésor sera ajouter en fin de liste) Si le trésor est déjà dans la liste des trésors à trouver la fonction ne fait rien
     paramètres:
@@ -53,6 +59,7 @@ def getNbTresorsRestants(joueur):
     pass
 
 def getNom(joueur):
+    return joueur[0]
     """
     retourne le nom du joueur
     paramètre: joueur le joueur

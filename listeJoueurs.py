@@ -12,6 +12,7 @@ import random
 from joueur import *
 
 def ListeJoueurs(nomsJoueurs):
+  
     """
     créer une liste de joueurs dont les noms sont dans la liste de noms passés en paramètre
     Attention il s'agit d'une liste de joueurs qui gère la notion de joueur courant
