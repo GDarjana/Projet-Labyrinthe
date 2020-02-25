@@ -9,7 +9,7 @@
    Ce module gère les cartes du labyrinthe. 
 """
 import random
-#Gilles
+#Ceci et un test
 
 
 """
@@ -18,7 +18,6 @@ l'indice du caractère dans la liste correspond au codage des murs sur la carte
 le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 """
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
-
 
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     """
@@ -29,6 +28,7 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
     """
     pass
+ 
 
 def estValide(c):
     """
