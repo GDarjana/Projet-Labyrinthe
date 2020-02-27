@@ -9,7 +9,6 @@
    Ce module gère les cartes du labyrinthe. 
 """
 import random
-#Ceci et un test
 
 
 """
@@ -31,39 +30,60 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
  
 
 def estValide(c):
-    """
-    retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zéro un ou deux murs
-    paramètre: c une carte
-    """
-    pass
+  res=True
+  if c=='Ø':
+    res=False
+  return res
+"""
+retourne un booléen indiquant si la carte est valide ou non c'est à dire qu'elle a zéro un ou deux murs
+paramètre: c une carte
+"""
 
 def murNord(c):
-    """
-    retourne un booléen indiquant si la carte possède un mur au nord
-    paramètre: c une carte
-    """
-    pass
+  listemurNord=['╦','╗','═','╔','Ø']
+  res=True
+  if c in listemurNord:
+    res=False
+  return res
+"""
+retourne un booléen indiquant si la carte possède un mur au nord
+paramètre: c une carte
+"""
+
 
 def murSud(c):
-    """
-    retourne un booléen indiquant si la carte possède un mur au sud
-    paramètre: c une carte
-    """
-    pass
+  listemurSud=['╩','╝','═','╚','Ø']
+  res=True
+  if c in listemurSud:
+    res=False
+  return res
+"""
+retourne un booléen indiquant si la carte possède un mur au sud
+paramètre: c une carte
+"""
+
 
 def murEst(c):
-    """
-    retourne un booléen indiquant si la carte possède un mur à l'est
-    paramètre: c une carte
-    """
-    pass
+  listemurEst=['╣','╝','║','╗','Ø']
+  res=True
+  if c in listemurEst:
+    res=False
+  return res
+"""
+retourne un booléen indiquant si la carte possède un mur à l'est
+paramètre: c une carte
+"""
 
 def murOuest(c):
-    """
-    retourne un booléen indiquant si la carte possède un mur à l'ouest
-    paramètre: c une carte
-    """
-    pass
+  listemurOuest=['╠','╔','║','╚','Ø']
+  res=True
+  if c in listemurOuest:
+    res=False
+  return res 
+"""
+retourne un booléen indiquant si la carte possède un mur à l'ouest
+paramètre: c une carte
+"""
 
 def getListePions(c):
     """
