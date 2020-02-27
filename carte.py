@@ -9,14 +9,13 @@
    Ce module gère les cartes du labyrinthe. 
 """
 import random
-
-
 """
 la liste des caractères semi-graphiques correspondant aux différentes cartes
 l'indice du caractère dans la liste correspond au codage des murs sur la carte
 le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 """
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
+c=random.choice(listeCartes)
 
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     """
@@ -26,7 +25,6 @@ def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
     tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
     pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
     """
-    pass
  
 
 def estValide(c):
@@ -41,9 +39,9 @@ paramètre: c une carte
 
 def murNord(c):
   listemurNord=['╦','╗','═','╔','Ø']
-  res=True
+  res=False
   if c in listemurNord:
-    res=False
+    res=True
   return res
 """
 retourne un booléen indiquant si la carte possède un mur au nord
@@ -53,9 +51,9 @@ paramètre: c une carte
 
 def murSud(c):
   listemurSud=['╩','╝','═','╚','Ø']
-  res=True
+  res=False
   if c in listemurSud:
-    res=False
+    res=True
   return res
 """
 retourne un booléen indiquant si la carte possède un mur au sud
@@ -65,9 +63,9 @@ paramètre: c une carte
 
 def murEst(c):
   listemurEst=['╣','╝','║','╗','Ø']
-  res=True
+  res=False
   if c in listemurEst:
-    res=False
+    res=True
   return res
 """
 retourne un booléen indiquant si la carte possède un mur à l'est
@@ -76,9 +74,9 @@ paramètre: c une carte
 
 def murOuest(c):
   listemurOuest=['╠','╔','║','╚','Ø']
-  res=True
+  res=False
   if c in listemurOuest:
-    res=False
+    res=True
   return res 
 """
 retourne un booléen indiquant si la carte possède un mur à l'ouest
@@ -86,11 +84,11 @@ paramètre: c une carte
 """
 
 def getListePions(c):
-    """
-    retourne la liste des pions se trouvant sur la carte
-    paramètre: c une carte
-    """
-    pass
+  """
+  retourne la liste des pions se trouvant sur la carte
+  paramètre: c une carte
+  """
+  pass
 
 def setListePions(c,listePions):
     """
