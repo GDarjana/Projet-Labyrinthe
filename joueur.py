@@ -77,3 +77,5 @@ def getNom(joueur):
     résultat: le nom du joueur 
     """
     
+if __name__ == '__main__':
+
