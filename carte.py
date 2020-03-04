@@ -18,13 +18,14 @@ listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','�
 c=random.choice(listeCartes)
 
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
-    """
-    permet de créer une carte:
-    paramètres:
-    nord, est, sud et ouest sont des booléens indiquant s'il y a un mur ou non dans chaque direction
-    tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
-    pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
-    """
+  """
+  permet de créer une carte:
+  paramètres:
+  nord, est, sud et ouest sont des booléens indiquant s'il y a un mur ou non dans chaque direction
+  tresor est le numéro du trésor qui se trouve sur la carte (0 s'il n'y a pas de trésor)
+  pions est la liste des pions qui sont posés sur la carte (un pion est un entier entre 1 et 4)
+  """
+  pass
  
 
 def estValide(c):
@@ -84,27 +85,39 @@ paramètre: c une carte
 """
 
 def getListePions(c):
+  Pions=[]
+  dictPions={}
+  for cle,valeur in dictPions.items():
+    if valeur == c:
+      Pions.append(cle)
+  return Pions
   """
   retourne la liste des pions se trouvant sur la carte
   paramètre: c une carte
   """
-  pass
-
 def setListePions(c,listePions):
+  dictPions={}
+  for pions in listePions:
+    for cle in dictPions.items():
+      dictPions.update(cle = c)
     """
     place la liste des pions passées en paramètre sur la carte
     paramètres: c: est une carte
                 listePions: la liste des pions à poser
     Cette fonction ne retourne rien mais modifie la carte
     """
-    pass
 
 def getNbPions(c):
+  dictPions={}
+  nbPions=0
+  for valeur in dictPions.values:
+    if valeur == c:
+      nbPions+=1
+  return nbPions
     """
     retourne le nombre de pions se trouvant sur la carte
     paramètre: c une carte
     """
-    pass
 
 def possedePion(c,pion):
     """
@@ -201,12 +214,18 @@ def decoderMurs(c,code):
     Cette fonction modifie la carte mais ne retourne rien
     """    
     pass
+
+
 def toChar(c):
+  carTrouvé='Ø'
+  for x in listeCartes:
+    if c==x:
+      carTrouvé=x
+  return carTrouvé
     """
     fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
     paramètres c une carte
     """
-    pass
 
 def passageNord(carte1,carte2):
     """
