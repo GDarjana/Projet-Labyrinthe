@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+de# -*- coding: utf-8 -*-
 """
         Projet Labyrinthe 
         Projet Python 2020 - Licence Informatique UNC (S3 TREC7)
@@ -193,6 +193,7 @@ def tourneAleatoire(c):
     pass
 
 def coderMurs(c):
+  
     """
     code les murs sous la forme d'un entier dont le codage binaire 
     est de la forme bNbEbSbO où bN, bE, bS et bO valent 

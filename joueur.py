@@ -33,11 +33,11 @@ def ajouterTresor(joueur,tresor):
     
 
 def prochainTresor(joueur):
-  if len(joueur['liste de trésor']) <= 1:
+  if len(joueur['liste de trésor']) == 0:
     return None
   else:
-    if joueur['liste de trésor'][1] != 0:
-      return joueur['liste de trésor'][1]
+    if joueur['liste de trésor'][0] != 0:
+      return joueur['liste de trésor'][0]
     else:
       return None
     """
@@ -59,10 +59,7 @@ def tresorTrouve(joueur):
     
 
 def getNbTresorsRestants(joueur):
-    nb = 0
-    for i in range(len(joueur['liste de trésor'])):
-      nb+=1
-    return nb
+    return len(joueur['liste de trésor'])
     """
     retourne le nombre de trésors qu'il reste à trouver
     paramètre: joueur le joueur
@@ -78,4 +75,15 @@ def getNom(joueur):
     """
     
 if __name__ == '__main__':
-
+  joueur = Joueur('bonsoir')
+  print(joueur)
+  ajouterTresor(joueur, 1)
+  ajouterTresor(joueur, 5)
+  ajouterTresor(joueur, 5)
+  ajouterTresor(joueur, 6)
+  print(joueur)
+  print(prochainTresor(joueur))
+  tresorTrouve(joueur)
+  print(getNbTresorsRestants(joueur))
+  print(getNom(joueur))
+  print(joueur)
