@@ -15,7 +15,6 @@ l'indice du caractère dans la liste correspond au codage des murs sur la carte
 le caractère 'Ø' indique que l'indice ne correspond pas à une carte
 """
 listeCartes=['╬','╦','╣','╗','╩','═','╝','Ø','╠','╔','║','Ø','╚','Ø','Ø','Ø']
-c=random.choice(listeCartes)
 
 def Carte( nord, est, sud, ouest, tresor=0, pions=[]):
   c={'nord': nord , 'est': est , 'sud' : sud , 'ouest':ouest,'trésor':tresor,'pions': pions}
