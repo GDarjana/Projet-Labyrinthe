@@ -62,7 +62,8 @@ def getVal(matrice,ligne,colonne):
     
 
 def setVal(matrice,ligne,colonne,valeur):
-  matrice = valeur
+  pass
+    
   """
     met la valeur dans la case se trouve en (ligne,colonne) de la matrice
     paramètres: matrice la matrice considérée
@@ -123,9 +124,10 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
 
 if __name__ == '__main__':
   matrice = Matrice(4,4)
+  matrice2 = [[0,1],[2,3]]
   print(getNbColonnes(matrice))
   print(getNbLignes(matrice))
-  setVal(matrice, 1, 3, 4)
+  setVal(matrice, 0, 3, 4)
   print(matrice)
-  print(getVal(matrice,0,3))
+  print(getVal(matrice2,1,0))
   
