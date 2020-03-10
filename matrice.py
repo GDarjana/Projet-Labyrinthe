@@ -15,11 +15,10 @@
 
 def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
   M = []
-  n = []
-  for colonnes in range(nbColonnes):
-    n.append(valeurParDefaut)
-  for lignes in range(nbLignes):
-    M.append(n)
+  for ligne in range(nbLignes):
+    M.append([])
+    for colonne in range(nbColonnes):
+      M[ligne].append(valeurParDefaut)
   return M
     
   """
@@ -62,7 +61,8 @@ def getVal(matrice,ligne,colonne):
     
 
 def setVal(matrice,ligne,colonne,valeur):
-  pass
+  if ligne <= getNbLignes(matrice) and colonne <= getNbColonnes(matrice):
+    matrice[ligne][colonne] = valeur
     
   """
     met la valeur dans la case se trouve en (ligne,colonne) de la matrice
@@ -124,10 +124,10 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
 
 if __name__ == '__main__':
   matrice = Matrice(4,4)
-  matrice2 = [[0,1],[2,3]]
   print(getNbColonnes(matrice))
   print(getNbLignes(matrice))
   setVal(matrice, 0, 3, 4)
   print(matrice)
-  print(getVal(matrice2,1,0))
+  print(getVal(matrice,1,0))
+
   
