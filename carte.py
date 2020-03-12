@@ -159,31 +159,50 @@ def poserPion(c, pion):
   Cette fonction modifie la carte mais ne retourne rien
   """
 def tournerHoraire(c):
-    """
-    fait tourner la carte dans le sens horaire
-    paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
-    """
-    pass
+  w=c['nord']
+  x=c['est']
+  y=c['sud']
+  z=c['ouest']
+  c['nord']=z
+  c['est']=w
+  c['sud']=x
+  c['ouest']=y
+  return c 
+"""fait tourner la carte dans le sens horaire
+paramètres: c une carte
+Cette fonction modifie la carte mais ne retourne rien    
+"""    
 
 def tournerAntiHoraire(c):
-    """
-    fait tourner la carte dans le sens anti-horaire
-    paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
-    """
-    pass
+  w=c['nord']
+  x=c['est']
+  y=c['sud']
+  z=c['ouest']
+  c['nord']=x
+  c['est']=y
+  c['sud']=z
+  c['ouest']=w
+
+"""
+fait tourner la carte dans le sens anti-horaire
+paramètres: c une carte
+Cette fonction modifie la carte mais ne retourne rien    
+"""
 def tourneAleatoire(c):
-    """
-    faire tourner la carte d'un nombre de tours aléatoire
-    paramètres: c une carte
-    Cette fonction modifie la carte mais ne retourne rien    
-    """
-    pass
+  booL=[True,False]
+  c['nord']=random.choice(booL)
+  c['est']=random.choice(booL)
+  c['sud']=random.choice(booL)
+  c['ouest']=random.choice(booL)
+"""
+faire tourner la carte d'un nombre de tours aléatoire
+paramètres: c une carte
+Cette fonction modifie la carte mais ne retourne rien    
+"""
 
 def coderMurs(c):
   
-    """
+  """
     code les murs sous la forme d'un entier dont le codage binaire 
     est de la forme bNbEbSbO où bN, bE, bS et bO valent 
        soit 0 s'il n'y a pas de mur dans dans la direction correspondante
@@ -207,15 +226,11 @@ def decoderMurs(c,code):
 
 
 def toChar(c):
-  carTrouvé='Ø'
-  for x in listeCartes:
-    if c==x:
-      carTrouvé=x
-  return carTrouvé
   """
   fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
   paramètres c une carte
   """
+  pass
 
 def passageNord(carte1,carte2):
     """
@@ -259,6 +274,9 @@ if __name__=="__main__":
   carte1=Carte(True,False,False,False,3)
   carte2=Carte(False,True,True,False)
   carte3=Carte(False,True,True,False,4,[])
+  carte4=Carte(False,False,False,True)
+  carte5=Carte(True,False,True,False)
+  carte6=Carte(False,False,False,True)
   print(estValide(carte1))
   print(estValide(carte2))
   
@@ -284,3 +302,9 @@ if __name__=="__main__":
   print(carte3)
   poserPion(carte3,1)
   print(carte3)
+
+  print(carte4)
+  print(tournerHoraire(carte4))
+  print(tournerAntiHoraire(carte5))
+
+  print(tourneAleatoire(carte6))
