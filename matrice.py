@@ -19,7 +19,6 @@ def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
     M.append([])
     for colonne in range(nbColonnes):
       M[ligne].append(valeurParDefaut)
-      valeurParDefaut+=1
   return M
     
   """
