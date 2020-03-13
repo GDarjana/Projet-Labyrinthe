@@ -201,72 +201,121 @@ Cette fonction modifie la carte mais ne retourne rien
 """
 
 def coderMurs(c):
+  dicoBinaire={'bN':c['nord'],'bE':c['est'],'bS':c['sud'],'bO':c['ouest']}
+  codeListe=[]
+  code=0
+  j=3
+  listeBool=dicoBinaire.values()
+  for elem in reversed(listeBool):
+    if elem == True:
+      codeListe.append(1)
+    else:
+      codeListe.append(0)
+  for binaire in codeListe:
+    code+=binaire*(2**j)
+    j=j-1
+  return code
+"""
+code les murs sous la forme d'un entier dont le codage binaire 
+est de la forme bNbEbSbO où bN, bE, bS et bO valent 
+soit 0 s'il n'y a pas de mur dans dans la direction correspondante
+soit 1 s'il y a un mur dans la direction correspondante
+bN est le chiffre des unité, BE des dizaine, etc...
+le code obtenu permet d'obtenir l'indice du caractère semi-graphique
+correspondant à la carte dans la liste listeCartes au début de ce fichier
+paramètre c une carte
+retourne un entier indice du caractère semi-graphique de la carte
+"""
   
-  """
-    code les murs sous la forme d'un entier dont le codage binaire 
-    est de la forme bNbEbSbO où bN, bE, bS et bO valent 
-       soit 0 s'il n'y a pas de mur dans dans la direction correspondante
-       soit 1 s'il y a un mur dans la direction correspondante
-    bN est le chiffre des unité, BE des dizaine, etc...
-    le code obtenu permet d'obtenir l'indice du caractère semi-graphique
-    correspondant à la carte dans la liste listeCartes au début de ce fichier
-    paramètre c une carte
-    retourne un entier indice du caractère semi-graphique de la carte
-    """
-    pass
-
 def decoderMurs(c,code):
-    """
-    positionne les murs d'une carte en fonction du code décrit précédemment
-    paramètres c une carte
-               code un entier codant les murs d'une carte
-    Cette fonction modifie la carte mais ne retourne rien
-    """    
-    pass
-
+  resBinaire=bin(code).replace("0b","")
+  listeBinaire=[]
+  listeCardinal=['ouest','sud','est','nord']
+  for x in resBinaire:
+    listeBinaire.append(x) 
+  while len(listeBinaire)<4:
+    listeBinaire.insert(0,'0')
+  for i in range(len(listeCardinal)):
+      if listeBinaire[i]=='1':
+        c[listeCardinal[i]]=True
+      else:
+        c[listeCardinal[i]]=False
+  return c 
+"""
+positionne les murs d'une carte en fonction du code décrit précédemment
+paramètres c une carte
+code un entier codant les murs d'une carte
+Cette fonction modifie la carte mais ne retourne rien
+"""    
 
 def toChar(c):
-  """
-  fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce script)
-  paramètres c une carte
-  """
-  pass
+  indice=coderMurs(c)
+  for i in range(len(listeCartes)):
+    if i==indice:
+      return listeCartes[i]
+"""
+fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce
+script)
+paramètres c une carte
+"""
 
 def passageNord(carte1,carte2):
-    """
-    suppose que la carte2 est placée au nord de la carte1 et indique
-    s'il y a un passage entre ces deux cartes en passant par le nord
-    paramètres carte1 et carte2 deux cartes
-    résultat un booléen
-    """
-    pass
+  passage=False
+  if carte2['sud']==False:
+    if carte1['nord']==False:
+      passage=True
+  return passage
+
+"""
+suppose que la carte2 est placée au nord de la carte1 et indique
+s'il y a un passage entre ces deux cartes en passant par le nord
+paramètres carte1 et carte2 deux cartes
+résultat un booléen
+"""
 
 def passageSud(carte1,carte2):
-    """
-    suppose que la carte2 est placée au sud de la carte1 et indique
-    s'il y a un passage entre ces deux cartes en passant par le sud
-    paramètres carte1 et carte2 deux cartes
-    résultat un booléen
-    """
-    pass
+  passage=False
+  if carte1['sud']==False:
+    if carte2['nord']==False:
+      passage=True
+  return passage
 
+
+"""
+suppose que la carte2 est placée au sud de la carte1 et indique
+s'il y a un passage entre ces deux cartes en passant par le sud
+paramètres carte1 et carte2 deux cartes
+résultat un booléen
+"""
+ 
 def passageOuest(carte1,carte2):
-    """
-    suppose que la carte2 est placée à l'ouest de la carte1 et indique
-    s'il y a un passage entre ces deux cartes en passant par l'ouest
-    paramètres carte1 et carte2 deux cartes
-    résultat un booléen
-    """
-    pass
+  passage=False
+  if carte2['est']==False:
+    if carte1['ouest']==False:
+      passage=True
+  return passage
+"""
+suppose que la carte2 est placée à l'ouest de la carte1 et indique
+s'il y a un passage entre ces deux cartes en passant par l'ouest
+paramètres carte1 et carte2 deux cartes
+résultat un booléen
+"""
+    
 
 def passageEst(carte1,carte2):
-    """
-    suppose que la carte2 est placée à l'est de la carte1 et indique
-    s'il y a un passage entre ces deux cartes en passant par l'est
-    paramètres carte1 et carte2 deux cartes
-    résultat un booléen    
-    """
-    pass
+  passage=False
+  if carte2['ouest']==False:
+    if carte1['est']==False:
+      passage=True
+  return passage
+"""
+suppose que la carte2 est placée à l'est de la carte1 et indique
+s'il y a un passage entre ces deux cartes en passant par l'est
+paramètres carte1 et carte2 deux cartes
+résultat un booléen    
+"""
+
+
 
 
 
@@ -277,6 +326,14 @@ if __name__=="__main__":
   carte4=Carte(False,False,False,True)
   carte5=Carte(True,False,True,False)
   carte6=Carte(False,False,False,True)
+  carte7=Carte(True,True,False,False)
+  carteDecoder=Carte(True,True,False,False)
+
+  carteGraph=Carte(False,False,True,False)
+
+  carte10=Carte(False,True,False,True)
+  carte11=Carte(True,False,True,False)
+
   print(estValide(carte1))
   print(estValide(carte2))
   
@@ -303,8 +360,25 @@ if __name__=="__main__":
   poserPion(carte3,1)
   print(carte3)
 
+
   print(carte4)
   print(tournerHoraire(carte4))
   print(tournerAntiHoraire(carte5))
 
   print(tourneAleatoire(carte6))
+
+  print(coderMurs(carte7))
+
+
+  print(decoderMurs(carte7,3))
+
+  print(decoderMurs(carteDecoder,12))
+
+  print(toChar(carteGraph))
+  
+  print(passageNord(carte10,carte11))
+  print(passageSud(carte10,carte11))
+
+
+  print(passageOuest(carte10,carte11))
+  print(passageEst(carte10,carte11))
