@@ -382,3 +382,5 @@ if __name__=="__main__":
 
   print(passageOuest(carte10,carte11))
   print(passageEst(carte10,carte11))
+  
+"""TEST COMMIT"""
