@@ -189,11 +189,10 @@ paramètres: c une carte
 Cette fonction modifie la carte mais ne retourne rien    
 """
 def tourneAleatoire(c):
-  booL=[True,False]
-  c['nord']=random.choice(booL)
-  c['est']=random.choice(booL)
-  c['sud']=random.choice(booL)
-  c['ouest']=random.choice(booL)
+  for i in range(random.randrange(10)):
+    tournerHoraire(c)
+  return c
+
 """
 faire tourner la carte d'un nombre de tours aléatoire
 paramètres: c une carte
