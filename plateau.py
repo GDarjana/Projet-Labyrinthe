@@ -5,15 +5,92 @@
 
    Module plateau
    ~~~~~~~~~~~~~~
-   
-   Ce module gère le plateau de jeu. 
+
+   Ce module gère le plateau de jeu.
 """
 
 from matrice import *
 from carte import *
 
 def Plateau(nbJoueurs, nbTresors):
-    """
+  tresors = []
+  for num in range(12):
+    tresors.append(num+1)
+  mat = Matrice(7,7)
+  if nbJoueurs == 1:
+    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[]))
+    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[]))
+    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
+
+  elif nbJoueurs == 2:
+    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
+    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[]))
+    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
+
+  elif nbJoueurs == 3:
+    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
+    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[3]))
+    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
+
+  elif nbJoueurs == 4:
+    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
+    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[3]))
+    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[4]))
+
+  tres = random.choice(tresors)
+  setVal(mat, 2, 0, Carte(False, False, False, True, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 4, 0, Carte(False, False, False, True, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 2, 2, Carte(False, False, False, True, tresor=tres, pions=[]))
+
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 2, 6, Carte(False, True, False, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 4, 6, Carte(False, True, False, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 4, 4, Carte(False, True, False, False, tresor=tres, pions=[]))
+
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 0, 2, Carte(True, False, False, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 0, 4, Carte(True, False, False, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 2, 4, Carte(True, False, False, False, tresor=tres, pions=[]))
+
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 6, 2, Carte(False, False, True, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 6, 4, Carte(False, False, True, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+  tres = random.choice(tresors)
+  setVal(mat, 4, 2, Carte(False, False, True, False, tresor=tres, pions=[]))
+  tresors.remove(tres)
+
+  listeCartesAmovibles = creerCartesAmovibles(13,nbTresors)
+  for i in range(len(mat)):
+    for j in range(len(mat[0])):
+      if mat[i][j] == 0:
+        carte = listeCartesAmovibles[0]
+        setVal(mat, i, j, carte)
+        listeCartesAmovibles.remove(carte)
+
+  return {'plateau' : mat, 'carte amovible' : listeCartesAmovibles[0]}
+  """
     créer un nouveau plateau contenant nbJoueurs et nbTrésors
     paramètres: nbJoueurs le nombre de joueurs (un nombre entre 1 et 4)
                 nbTresors le nombre de trésor à placer (un nombre entre 1 et 49)
@@ -22,12 +99,33 @@ def Plateau(nbJoueurs, nbTresors):
                 ont été placée de manière aléatoire
               - la carte amovible qui n'a pas été placée sur le plateau
     """
-    pass
+
 
 
 
 def creerCartesAmovibles(tresorDebut,nbTresors):
-    """
+  liste = []
+  listeTres = []
+  for i in range(tresorDebut,nbTresors+1):
+    listeTres.append(i)
+  for i in range(16):
+    carte = tourneAleatoire(Carte(False, True, True, False, tresor=0, pions=[]))
+    liste.append(carte)
+  for i in range(6):
+    carte = tourneAleatoire(Carte(False, False, False, True, tresor=0, pions=[]))
+    liste.append(carte)
+  for i in range(12):
+    carte = tourneAleatoire(Carte(True, False, True, False, tresor=0, pions=[]))
+    liste.append(carte)
+  random.shuffle(liste)
+  i = 0
+  while len(listeTres) > 0 and i < len(liste):
+    tres = random.choice(listeTres)
+    liste[i]['trésor'] = tres
+    listeTres.remove(tres)
+    i+=1
+  return liste
+  """
     fonction utilitaire qui permet de créer les cartes amovibles du jeu en y positionnant
     aléatoirement nbTresor trésors
     la fonction retourne la liste, mélangée aléatoirement, des cartes ainsi créées
@@ -35,7 +133,7 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
                 nbTresors: le nombre total de trésor à créer
     résultat: la liste mélangée aléatoirement des cartes amovibles créees
     """
-    pass
+
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
     """
@@ -108,7 +206,7 @@ def accessible(plateau,ligD,colD,ligA,colA):
 def accessibleDist(plateau,ligD,colD,ligA,colA):
     """
     indique si il y a un chemin entre la case ligD,colD et la case ligA,colA du plateau
-    mais la valeur de retour est None s'il n'y a pas de chemin, 
+    mais la valeur de retour est None s'il n'y a pas de chemin,
     sinon c'est un chemin possible entre ces deux cases sous la forme d'une liste
     de coordonées (couple de (lig,col))
     paramètres: plateau: le plateau considéré
@@ -120,3 +218,7 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
               de départ et la case d'arrivée
     """
     pass
+
+if __name__ == '__main__':
+  plateau = Plateau(4,25)
+  print(plateau)

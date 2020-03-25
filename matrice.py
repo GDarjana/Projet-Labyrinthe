@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
     Projet Labyrinthe
     Projet Python 2020 - Licence Informatique UNC (S3 TREC7)
 
    Module matrice
    ~~~~~~~~~~~~~~~
-   
-   Ce module gère une matrice. 
+
+   Ce module gère une matrice.
 """
 
 #-----------------------------------------
@@ -20,17 +21,17 @@ def Matrice(nbLignes,nbColonnes,valeurParDefaut=0):
     for colonne in range(nbColonnes):
       M[ligne].append(valeurParDefaut)
   return M
-    
+
   """
-    crée une matrice de nbLignes lignes sur nbColonnes colonnes en mettant 
+    crée une matrice de nbLignes lignes sur nbColonnes colonnes en mettant
     valeurParDefaut dans chacune des cases
-    paramètres: 
+    paramètres:
       nbLignes un entier strictement positif qui indique le nombre de lignes
       nbColonnes un entier strictement positif qui indique le nombre de colonnes
       valeurParDefaut la valeur par défaut
     résultat la matrice ayant les bonnes propriétés
     """
-    
+
 
 def getNbLignes(matrice):
   return len(matrice)
@@ -38,7 +39,7 @@ def getNbLignes(matrice):
     retourne le nombre de lignes de la matrice
     paramètre: matrice la matrice considérée
     """
-    
+
 
 def getNbColonnes(matrice):
   return len(matrice[0])
@@ -46,24 +47,24 @@ def getNbColonnes(matrice):
     retourne le nombre de colonnes de la matrice
     paramètre: matrice la matrice considérée
     """
-    
+
 
 def getVal(matrice,ligne,colonne):
   if ligne <= getNbLignes(matrice) and colonne <= getNbColonnes(matrice):
     return matrice[ligne][colonne]
-  
+
   """
     retourne la valeur qui se trouve en (ligne,colonne) dans la matrice
     paramètres: matrice la matrice considérée
                 ligne le numéro de la ligne (en commençant par 0)
                 colonne le numéro de la colonne (en commençant par 0)
     """
-    
+
 
 def setVal(matrice,ligne,colonne,valeur):
   if ligne <= getNbLignes(matrice) and colonne <= getNbColonnes(matrice):
     matrice[ligne][colonne] = valeur
-    
+
   """
     met la valeur dans la case se trouve en (ligne,colonne) de la matrice
     paramètres: matrice la matrice considérée
@@ -72,10 +73,10 @@ def setVal(matrice,ligne,colonne,valeur):
                 valeur la valeur à stocker dans la matrice
     cette fonction ne retourne rien mais modifie la matrice
     """
-    
 
 
-#------------------------------------------        
+
+#------------------------------------------
 # decalages
 #------------------------------------------
 def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
@@ -92,7 +93,7 @@ def decalageLigneAGauche(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat la valeur qui a été ejectée lors du décalage
     """
-    
+
 
 def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
   valEject = matrice[numLig].pop()
@@ -106,7 +107,7 @@ def decalageLigneADroite(matrice, numLig, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    
+
 def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
   valEject = matrice[0][numCol]
   for i in range(len(matrice)-1):
@@ -122,7 +123,7 @@ def decalageColonneEnHaut(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    
+
 
 def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
   valEject = matrice[len(matrice)-1][numCol]
@@ -131,8 +132,8 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
   del matrice[0][numCol]
   matrice[0].insert(numCol, nouvelleValeur)
   return valEject
-    
-  
+
+
   """
     decale la colonne numCol d'une case vers le bas en insérant une nouvelle
     valeur pour remplacer la premiere case en haut de cette ligne
@@ -141,10 +142,10 @@ def decalageColonneEnBas(matrice, numCol, nouvelleValeur=0):
                  nouvelleValeur la valeur à placer
     résultat: la valeur de la case "ejectée" par le décalage
     """
-    
+
 
 if __name__ == '__main__':
-  matrice = Matrice(4,4)
+  matrice = Matrice(7,7)
   print(getNbColonnes(matrice))
   print(getNbLignes(matrice))
   setVal(matrice, 1, 0, 9)
@@ -162,6 +163,3 @@ if __name__ == '__main__':
   print(matrice)
   print(decalageColonneEnBas(matrice, 1, 4))
   print(matrice)
-
-
-  
