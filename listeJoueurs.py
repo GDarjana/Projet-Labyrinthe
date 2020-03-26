@@ -115,12 +115,10 @@ def joueurCourantTrouveTresor(joueurs):
 
 
 def nbTresorsRestantsJoueur(joueurs,numJoueur):
-  cptTresor = 0
   for i in range(len(joueurs)):
     if joueurs[i]['numéro'] == numJoueur:
-      for elem in joueurs[i]['liste de trésor']:
-        cptTresor += 1
-  return cptTresor
+      nbTresors = getNbTresorsRestants(joueurs[i])
+  return nbTresors
 
 
   """
