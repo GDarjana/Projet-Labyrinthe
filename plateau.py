@@ -1,45 +1,21 @@
-# -*- coding: utf-8 -*- test
-"""
-    Projet Labyrinthe
-    Projet Python 2020 - Licence Informatique UNC (S3 TREC7)
-
-   Module plateau
-   ~~~~~~~~~~~~~~
-
-   Ce module gère le plateau de jeu.
-"""
-
-from matrice import *
-from carte import *
-
 def Plateau(nbJoueurs, nbTresors):
-  tresors = []
-  for num in range(12):
-    tresors.append(num+1)
+  tresors=list(range(1,13))
   mat = Matrice(7,7)
-  if nbJoueurs == 1:
-    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+  setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
+  if nbJoueurs > 1:
+    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
+  else:
     setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[]))
-    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[]))
-    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
 
-  elif nbJoueurs == 2:
-    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
-    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
-    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[]))
-    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
-
-  elif nbJoueurs == 3:
-    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
-    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
+  if nbJoueurs > 2:
     setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[3]))
-    setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[]))
+  else:
+    setVal(mat, 6, 0, Carte(False, True, True, False, tresor=0, pions=[]))
 
-  elif nbJoueurs == 4:
-    setVal(mat, 0, 0, Carte(True, False, False, True, tresor=0, pions=[1]))
-    setVal(mat, 0, 6, Carte(True, True, False, False, tresor=0, pions=[2]))
-    setVal(mat, 6, 0, Carte(False, False, True, True, tresor=0, pions=[3]))
+  if nbJoueurs > 3:
     setVal(mat, 6, 6, Carte(False, True, True, False, tresor=0, pions=[4]))
+  else:
+    setVal(mat, 6, 6, Carte(True, True, False, False, tresor=0, pions=[]))
 
   tres = random.choice(tresors)
   setVal(mat, 2, 0, Carte(False, False, False, True, tresor=tres, pions=[]))
