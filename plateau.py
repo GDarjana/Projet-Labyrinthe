@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+    Projet Labyrinthe
+    Projet Python 2020 - Licence Informatique UNC (S3 TREC7)
+
+   Module plateau
+   ~~~~~~~~~~~~~~
+   
+   Ce module gère le plateau de jeu. 
+"""
+from matrice import *
+from carte import *
 def Plateau(nbJoueurs, nbTresors):
   tresors=list(range(1,13))
   mat = Matrice(7,7)
@@ -112,7 +124,13 @@ def creerCartesAmovibles(tresorDebut,nbTresors):
 
 
 def prendreTresorPlateau(plateau,lig,col,numTresor):
-    """
+  res=False
+  carteConsidéréé=getVal(plateau['plateau'],lig,col)
+  if carteConsidéréé['trésor']==numTresor:
+    res=True
+  return res
+
+"""
     prend le tresor numTresor qui se trouve sur la carte en lin,col du plateau
     retourne True si l'opération s'est bien passée (le trésor était vraiment sur
     la carte
@@ -122,52 +140,85 @@ def prendreTresorPlateau(plateau,lig,col,numTresor):
                 numTresor: le numéro du trésor à prendre sur la carte
     resultat: un booléen indiquant si le trésor était bien sur la carte considérée
     """
-    pass
+
 
 def getCoordonneesTresor(plateau,numTresor):
-    """
+  lig,col=0,0
+  trésorTrouvé=0
+  plateauConsidérée=plateau['plateau']
+  for i in range(len(plateauConsidérée)):
+    for j in range(len(plateauConsidérée[0])):
+      if plateauConsidérée[i][j]['trésor']==numTresor:
+        lig,col=i,j
+        res=(lig,col)
+        trésorTrouvé=1
+  if trésorTrouvé==0:
+    res=None
+  
+  return res
+
+"""
     retourne les coordonnées sous la forme (lig,col) du trésor passé en paramètre
     paramètres: plateau: le plateau considéré
                 numTresor: le numéro du trésor à trouver
     resultat: un couple d'entier donnant les coordonnées du trésor ou None si
               le trésor n'est pas sur le plateau
     """
-    pass
+
 
 def getCoordonneesJoueur(plateau,numJoueur):
-    """
+  lig,col=0,0
+  JoueurTrouvé=0
+  plateauConsidérée=plateau['plateau']
+  for i in range(len(plateauConsidérée)):
+    for j in range(len(plateauConsidérée[0])):
+      if numJoueur in plateauConsidérée[i][j]['pions']:
+        lig,col=i,j
+        res=(lig,col)
+        JoueurTrouvé=1
+  if JoueurTrouvé==0:
+    res=None
+  return res
+"""
     retourne les coordonnées sous la forme (lig,col) du joueur passé en paramètre
     paramètres: plateau: le plateau considéré
                 numJoueur: le numéro du joueur à trouver
     resultat: un couple d'entier donnant les coordonnées du joueur ou None si
               le joueur n'est pas sur le plateau
     """
-    pass
+  
 
 def prendrePionPlateau(plateau,lin,col,numJoueur):
-    """
+  carteConsidéréé=getVal(plateau['plateau'],lin,col)
+  carteConsidéréé['pions'].remove(numJoueur)
+      
+"""
     prend le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
     paramètres: plateau:le plateau considéré
                 lin: numéro de la ligne où se trouve le pion
                 col: numéro de la colonne où se trouve le pion
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
-    """
-    pass
+"""
+
 def poserPionPlateau(plateau,lin,col,numJoueur):
-    """
+  carteConsidéréé=getVal(plateau['plateau'],lin,col)
+  carteConsidéréé['pions'].append(numJoueur)
+
+"""
     met le pion du joueur sur la carte qui se trouve en (lig,col) du plateau
     paramètres: plateau:le plateau considéré
                 lin: numéro de la ligne où se trouve le pion
                 col: numéro de la colonne où se trouve le pion
                 numJoueur: le numéro du joueur qui correspond au pion
     Cette fonction ne retourne rien mais elle modifie le plateau
-    """
-    pass
+"""
+  
 
 
 def accessible(plateau,ligD,colD,ligA,colA):
-    """
+  plateauConsidérée=plateau['plateau']
+  """
     indique si il y a un chemin entre la case ligD,colD et la case ligA,colA du labyrinthe
     paramètres: plateau: le plateau considéré
                 ligD: la ligne de la case de départ
@@ -177,7 +228,6 @@ def accessible(plateau,ligD,colD,ligA,colA):
     résultat: un boolean indiquant s'il existe un chemin entre la case de départ
               et la case d'arrivée
     """
-    pass
 
 def accessibleDist(plateau,ligD,colD,ligA,colA):
     """
@@ -196,5 +246,8 @@ def accessibleDist(plateau,ligD,colD,ligA,colA):
     pass
 
 if __name__ == '__main__':
-  plateau = Plateau(4,25)
-  print(plateau)
+  plateau1 = Plateau(4,25)
+  print(prendreTresorPlateau(plateau1,2,0,3))
+  print(getCoordonneesTresor(plateau1,100))
+  print(getCoordonneesJoueur(plateau1,5))
+  print(prendrePionPlateau(plateau1,6,0,3))

@@ -80,12 +80,9 @@ def getListePions(c):
   paramètre: c une carte
   """
 def setListePions(c,listePions):
-  if len(listePions)<=4:
-    for pions in listePions:
-      c['pions'].append(pions)
-  else:
-    print('Le nombre de pions ne doit pas dépasser 4')
-    """
+  c['pions']=listePions
+
+"""
     place la liste des pions passées en paramètre sur la carte
     paramètres: c: est une carte
                 listePions: la liste des pions à poser
@@ -248,10 +245,8 @@ Cette fonction modifie la carte mais ne retourne rien
 """    
 
 def toChar(c):
-  indice=coderMurs(c)
-  for i in range(len(listeCartes)):
-    if i==indice:
-      return listeCartes[i]
+  i=coderMurs(c)
+  return listeCartes[i]
 """
 fournit le caractère semi graphique correspondant à la carte (voir la variable listeCartes au début de ce
 script)
