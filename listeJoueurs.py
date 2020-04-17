@@ -38,7 +38,7 @@ def ajouterJoueur(joueurs, joueur):
   """
 
 def initAleatoireJoueurCourant(joueurs):
-  joueurs['indice']= random.randrange(len(joueurs))
+  joueurs['indice']= random.randrange(len(joueurs['liste']))
   """
     tire au sort le joueur courant
     paramètre: joueurs un liste de joueurs
@@ -69,7 +69,7 @@ def distribuerTresors(joueurs,nbTresors=24, nbTresorMax=0):
 
 
 def changerJoueurCourant(joueurs):
-  if joueurs['indice'] > len(joueurs):
+  if joueurs['indice'] == len(joueurs['liste'])-1:
     joueurs['indice'] = 0
   else:
     joueurs['indice']+=1
@@ -188,10 +188,16 @@ if __name__ == '__main__':
   distribuerTresors(joueurs)
   changerJoueurCourant(joueurs)
   print(joueurs)
+  print(nomJoueurCourant(joueurs))
   changerJoueurCourant(joueurs)
   print(joueurs)
+  print(nomJoueurCourant(joueurs))
   changerJoueurCourant(joueurs)
   print(joueurs)
+  print(nomJoueurCourant(joueurs))
+  changerJoueurCourant(joueurs)
+  print(joueurs)
+  print(nomJoueurCourant(joueurs))
   print(getJoueurCourant(joueurs))
   joueurCourantTrouveTresor(joueurs)
   print(joueurs)
